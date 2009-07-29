@@ -9,18 +9,28 @@ var tests = [
     },
     {
         'in': ['items', {
-           item1: ['item1', 'text1'],
-           item2: ['item2', 'item2'],
-           subitem: [
+           item1: 'text1',
+           item2: [{attr: 1}, 'text2'],
+           item3: ['text3'],
+           item4: [],
+           subitems: [
               ['subitem', {attr: true}, 'content1'],
               ['subitem', {attr: false}, 'content2']
-           ]
+           ],
+           elem: ['subelem', {attr:true}, 'subtext']
         }],
         'out': '<items>' +
                 '<item1>text1</item1>' +
-                '<item2>item2</item2>' +
-                '<subitem attr="true">content1</subitem>' +
-                '<subitem attr="false">content2</subitem>' +
+                '<item2 attr="1">text2</item2>' +
+                '<item3>text3</item3>' +
+                '<item4></item4>' +
+                '<subitems>' +
+                    '<subitem attr="true">content1</subitem>' +
+                    '<subitem attr="false">content2</subitem>' +
+                '</subitems>' +
+                '<elem>' +
+                    '<subelem attr="true">subtext</subelem>' +
+                '</elem>' +
             '</items>'
     }
 ];

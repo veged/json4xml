@@ -23,12 +23,6 @@
             (typeof o[0] === 'string');
     };
 
-    function isSameElements(o) {
-        var result = true;
-        $.each(o, function(){ return result = (isElement(this) && this[0] == o[0][0]) });
-        return result;
-    };
-
     function isElementsArray(o) {
         var result = true;
         $.each(o, function(){ return result = isElement(this) });
@@ -38,7 +32,7 @@
     function isElementsHash(o) {
         var result = true;
         $.each(o, function(k, v){
-            return result = (isSimple(v) || isElement(v) || isElementsArray(v));
+            return result = (isSimple(v) || (isArray(v) && v.length && v.length <= 2)  || isElement(v) || isElementsArray(v));
         });
         return !isArray(o) && !isSimple(o) && result;
     };
@@ -59,14 +53,13 @@
             $.each(o, function(){ r.push(json2xml(this)) });
         } else if (isElementsHash(o)) {
             $.each(o, function(k, v){
-                var same, element,
-                    needLevel = k && (isSimple(v) ||
-                        ((element = isElement(v)) && k != v[0]) ||
-                        ((same = isSameElements(v)) && k != v[0][0]) ||
-                        (!element && !same));
-                if (needLevel) r.push('<', k, '>');
-                r.push(json2xml(v));
-                if (needLevel) r.push('</', k, '>');
+                if (isSimple(v) || isElement(v) || isElementsArray(v)) {
+                    if (k) r.push('<', k, '>');
+                    r.push(json2xml(v));
+                    if (k) r.push('</', k, '>');
+                } else {
+                    r.push(json2xml([k, v.length == 2 ? v[0] : {}, v[1] || v[0] || '']));
+                }
             });
         }
         return r.join('');
