@@ -35,12 +35,15 @@
         var result = true;
 
         for (var i in o) {
-            var v = o[i];
-            result = (isSimple(v) ||
-                (isArray(v) && v.length && v.length <= 2) ||
-                isElement(v) ||
-                isElementsArray(v));
-            if (!result) break;
+            if (o.hasOwnProperty(i)) {
+                var v = o[i];
+                result = isSimple(v) ||
+                    (isArray(v) && v.length && v.length <= 2) ||
+                    isElement(v) ||
+                    isElementsArray(v) ||
+                    isElementsHash(v);
+                if (!result) break;
+            }
         }
         return result;
     };
@@ -67,7 +70,7 @@
             for (var k in o) {
                 if (o.hasOwnProperty(k)) {
                     var v = o[k];
-                    if (isSimple(v) || isElement(v) || isElementsArray(v)) {
+                    if (isSimple(v) || isElement(v) || isElementsArray(v) || isElementsHash(v)) {
                         if (k) r.push('<', k, '>');
                         r.push(json4xml(v));
                         if (k) r.push('</', k, '>');

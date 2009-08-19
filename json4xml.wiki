@@ -32,7 +32,7 @@
 
 === Хеш элементов
 
-В качестве ключа имя элемента, в качестве значения простой тип, элемент-без-имени,
+В качестве ключа имя элемента, в качестве значения простой тип, хеш элементов, элемент-без-имени,
 массив элементов-без-имени, элемент или массив элементов.
 
 Используется когда не важен порядок элементов, элементы уникальные и нужен доступ по ключу.
@@ -42,6 +42,7 @@
 %%%hl js
 {item1: 'text'} // <item1>text</item1>
 {item1: [{attr: 'bla'}, 'text']} // <item1 attr="bla">text</item1>
+{item: {subitem: 'text'}} // <item><subitem>text<subitem></item>
 {item1: [[{attr: 1}, ''], [{attr: 2}, '']]} // <item1 attr="1"></item1><item1 attr="2"></item1>
 {item: ['subitem', 'text']} // <item><subitem>text</subitem></item>
 {item: [['subitem1', 'text1'], ['subitem2', 'text2']]} // <item><subitem1>text1</subitem1><subitem2>text2</subitem2></item>
