@@ -8,6 +8,38 @@ var tests = [
         'out': '<item attr1="1" attr2="2">text1</item>'
     },
     {
+        'in': ['', 'text'],
+        'out': 'text'
+    },
+    {
+        'in': ['item', ''],
+        'out': '<item></item>'
+    },
+    {
+        'in': {item1: 'text'},
+        'out': '<item1>text</item1>'
+    },
+    {
+        'in': {item1: [{attr: 'bla'}, 'text']},
+        'out': '<item1 attr="bla">text</item1>'
+    },
+    {
+        'in': {item1: [[{attr: '1'}, 'text'], [{attr: '2'}, 'text']]},
+        'out': '<item1 attr="1">text</item1><item1 attr="2">text</item1>'
+    },
+    {
+        'in': {item: ['subitem', 'text']},
+        'out': '<item><subitem>text</subitem></item>'
+    },
+    {
+        'in': {item: [['subitem1', 'text1'], ['subitem2', 'text2']]},
+        'out': '<item><subitem1>text1</subitem1><subitem2>text2</subitem2></item>'
+    },
+    {
+        'in': [['subitem1', 'text1'], ['subitem2', 'text2']],
+        'out': '<subitem1>text1</subitem1><subitem2>text2</subitem2>'
+    },
+    {
         'in': ['items', {
            item1: 'text1',
            item2: [{attr: 1}, 'text2'],
@@ -40,7 +72,7 @@ var times = [(new Date()).getTime()],
 for (var i = 0; i < tests.length; i++) {
     var test = tests[i];
 
-    test.res = $.json4xml(test['in']);
+    test.res = json4xml(test['in']);
     var isOk = test.res == test.out;
 
     console.log('Test in:', test['in'], (isOk ? 'OK' : 'FAIL'));
