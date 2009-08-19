@@ -37,7 +37,7 @@
         return !isArray(o) && !isSimple(o) && result;
     };
 
-    function json2xml(o) {
+    function json4xml(o) {
         var r = [];
         if (isSimple(o)) {
             r.push(xmlEscape(o));
@@ -47,24 +47,24 @@
                 if (o.length == 3) $.each(o[1], function(n){ r.push(' ', n, '="', xmlEscape(this), '"') });
                 r.push('>');
             }
-            r.push(json2xml(o[2] || o[1]));
+            r.push(json4xml(o[2] || o[1]));
             if (o[0]) r.push('</', o[0], '>');
         } else if (isElementsArray(o)) {
-            $.each(o, function(){ r.push(json2xml(this)) });
+            $.each(o, function(){ r.push(json4xml(this)) });
         } else if (isElementsHash(o)) {
             $.each(o, function(k, v){
                 if (isSimple(v) || isElement(v) || isElementsArray(v)) {
                     if (k) r.push('<', k, '>');
-                    r.push(json2xml(v));
+                    r.push(json4xml(v));
                     if (k) r.push('</', k, '>');
                 } else {
-                    r.push(json2xml([k, v.length == 2 ? v[0] : {}, v[1] || v[0] || '']));
+                    r.push(json4xml([k, v.length == 2 ? v[0] : {}, v[1] || v[0] || '']));
                 }
             });
         }
         return r.join('');
     };
 
-    $.json2xml = json2xml;
+    $.json4xml = json4xml;
 
 })(jQuery);

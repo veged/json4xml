@@ -1,7 +1,7 @@
 <html>
     <head>
         <script src="http://js.static.yandex.net/jquery/1.3.2/_jquery.js"></script>
-        <script src="jquery.json2xml.js"></script>
+        <script src="jquery.json4xml.js"></script>
         <script src="tests.js"></script>
         <script>
             $(function(){
@@ -11,7 +11,7 @@
                         var times = [(new Date()).getTime()],
                             test = {'in': eval('(' + this.value + ')')};
                         times.push((new Date()).getTime() - times[0]);
-                        test.res = $.json2xml(test['in']);
+                        test.res = $.json4xml(test['in']);
                         times.push((new Date()).getTime() - times[0]);
                         output.val(test.res);
                         times.shift();

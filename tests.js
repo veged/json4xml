@@ -40,7 +40,7 @@ var times = [(new Date()).getTime()],
 for (var i = 0; i < tests.length; i++) {
     var test = tests[i];
 
-    test.res = $.json2xml(test['in']);
+    test.res = $.json4xml(test['in']);
     var isOk = test.res == test.out;
 
     console.log('Test in:', test['in'], (isOk ? 'OK' : 'FAIL'));
