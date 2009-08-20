@@ -36,6 +36,10 @@ var tests = [
         'out': '<item><subitem1>text1</subitem1><subitem2>text2</subitem2></item>'
     },
     {
+        'in': {item1: [[{subitem: 1}], [{subitem: 2}]]},
+        'out': '<item1><subitem>1</subitem></item1><item1><subitem>2</subitem></item1>'
+    },
+    {
         'in': ['item', {subitem1: 'text1', subitem2: 'text2'}],
         'out': '<item><subitem1>text1</subitem1><subitem2>text2</subitem2></item>'
     },

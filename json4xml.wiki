@@ -44,6 +44,7 @@
 {item1: [{attr: 'bla'}, 'text']} // <item1 attr="bla">text</item1>
 {item: {subitem: 'text'}} // <item><subitem>text<subitem></item>
 {item1: [[{attr: 1}, ''], [{attr: 2}, '']]} // <item1 attr="1"></item1><item1 attr="2"></item1>
+{item1: [[{subitem: 1}], [{subitem: 2}]]} // <item1><subitem>1</subitem></item1><item1><subitem>2</subitem></item1>
 {item: ['subitem', 'text']} // <item><subitem>text</subitem></item>
 {item: [['subitem1', 'text1'], ['subitem2', 'text2']]} // <item><subitem1>text1</subitem1><subitem2>text2</subitem2></item>
 %%%
