@@ -29,6 +29,18 @@
         return result;
     };
 
+    function isNonameElement(o) {
+        return isArray(o) &&
+            (o.length && o.length <= 2);
+    };
+
+    function isNonameElementsArray(o) {
+        if (!isArray(o)) return false;
+        var result = true;
+        for (var i = 0, l = o.length; i < l; i++) result = isNonameElement(o[i]);
+        return result;
+    };
+
     function isElementsHash(o) {
         if (isArray(o) || isSimple(o)) return false;
 
@@ -38,8 +50,9 @@
             if (o.hasOwnProperty(i)) {
                 var v = o[i];
                 result = isSimple(v) ||
-                    (isArray(v) && v.length && v.length <= 2) ||
+                    isNonameElement(v) ||
                     isElement(v) ||
+                    isNonameElementsArray(v) ||
                     isElementsArray(v) ||
                     isElementsHash(v);
                 if (!result) break;

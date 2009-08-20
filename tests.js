@@ -24,8 +24,8 @@ var tests = [
         'out': '<item1 attr="bla">text</item1>'
     },
     {
-        'in': {item1: [[{attr: '1'}, 'text'], [{attr: '2'}, 'text']]},
-        'out': '<item1 attr="1">text</item1><item1 attr="2">text</item1>'
+        'in': {item1: [[{attr: '1'}, 'text'], [{attr: '2'}, 'text'], [{attr: '3'}, 'text']]},
+        'out': '<item1 attr="1">text</item1><item1 attr="2">text</item1><item1 attr="3">text</item1>'
     },
     {
         'in': {item: ['subitem', 'text']},
